@@ -19,8 +19,38 @@
     },
     {
       "modName": "GoPlayGtag",
-      "modAuthor": "Polyglot",
+      "modAuthor": "bjrsinge",
       "modLink": "https://github.com/d3v3l0p3r-d3v/GoPlayGtag/releases/download/v1.0.1/GoPlayGtag.dll",
+      "isZipped": false
+    },
+    {
+      "modName": "HoneyLib",
+      "modAuthor": "Buzz Bzzz",
+      "modLink": "https://github.com/BzzzThe18th/HoneyLib/releases/download/1.0.5/HoneyLib-v1.0.5.zip"
+      "isZipped": true
+    },
+    {
+      "modName": "Graphics Controller",
+      "modAuthor": "Goober",
+      "modLink": "https://github.com/g00berguy/GraphicsController/releases/download/1.0.4/GraphicsController.dll",
+      "isZipped": false
+    },
+    {
+      "modName": "WrysersGoPro",
+      "modAuthor": "Wrysers",
+      "modLink": "https://github.com/wryser/Wrysers-GoPro/releases/download/2.2.0/WrysersGoPro.dll",
+      "isZipped": false
+    },
+    {
+      "modName": "Bark (CI Required)",
+      "modAuthor": "KyleTheScientist",
+      "modLink": "https://github.com/KyleTheScientist/Bark/releases/download/v1.3.3/Bark-ComputerInterface-1.3.3.dll",
+      "isZipped": false
+    },
+    {
+      "modName": "Bark (No CI)",
+      "modAuthor": "KyleTheScientist",
+      "modLink": "https://github.com/KyleTheScientist/Bark/releases/download/v1.3.3/Bark-NoComputerInterface-1.3.3.dll",
       "isZipped": false
     }
   ]
