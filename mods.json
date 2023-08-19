@@ -1,5 +1,4 @@
-{
-  "mods": [
+[
     {
       "modName": "BepInEx",
       "modAuthor": "BepInEx",
@@ -25,4 +24,3 @@
       "isZipped": false
     }
   ]
-}
