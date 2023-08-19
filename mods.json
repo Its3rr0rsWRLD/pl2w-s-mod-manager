@@ -21,7 +21,8 @@
     {
       "modName": "GoPlayGtag",
       "modAuthor": "Polyglot",
-      "modLink": "https://github.com/d3v3l0p3r-d3v/GoPlayGtag/releases/download/v1.0.1/GoPlayGtag.dll"
+      "modLink": "https://github.com/d3v3l0p3r-d3v/GoPlayGtag/releases/download/v1.0.1/GoPlayGtag.dll",
+      "isZipped": false
     }
   ]
 }
