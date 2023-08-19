@@ -14,7 +14,7 @@
     {
       "modName": "Gorilla Server Stats",
       "modAuthor": "3rr0r The Nerd",
-      "modLink": "https://github.com/ThatError404/GorillaStats/releases/download/1.0.4/GorillaServerStats.dll",
+      "modLink": "https://github.com/ThatError404/GorillaStats/releases/download/1.0.5/GorillaServerStats.dll",
       "isZipped": false
     },
     {
@@ -52,5 +52,23 @@
       "modAuthor": "KyleTheScientist",
       "modLink": "https://github.com/KyleTheScientist/Bark/releases/download/v1.3.3/Bark-NoComputerInterface-1.3.3.dll",
       "isZipped": false
-    }
+    },
+    {
+      "modName": "Gorilla Cosmetics",
+      "modAuthor": "(Fixed By) soda_ontop",
+      "modLink": "https://github.com/ClickadysModding/Gorilla-Cosmetics/releases/download/modding/GorillaCosmetics.zip",
+      "isZipped": true
+    },
+    {
+      "modName": "GOOMPS",
+      "modAuthor": "Buzz Bzzz",
+      "modLink": "https://github.com/BzzzThe18th/GOOMPS/releases/download/1.0.1/GOOMPS.dll",
+      "isZipped": true
+    },
+    {
+      "modName": "YizziCamMod",
+      "modAuthor": "Yizzi",
+      "modLink": "https://github.com/Yizzii/YizziCamModV2/releases/download/beta1.0.7/YizziCamModV2.dll",
+      "isZipped": false
+    },
   ]
