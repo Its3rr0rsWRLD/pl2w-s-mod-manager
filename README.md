@@ -1,6 +1,6 @@
 # Pl2w's Mod Manager for Gorilla Tag 🦍
 
-![Logo](https://media.discordapp.net/attachments/887962015040147486/1142546048523452527/image.png)
+![Logo]([https://media.discordapp.net/attachments/887962015040147486/1142546048523452527/image.png](https://cdn.discordapp.com/attachments/887962015040147486/1142554618354741288/image.png))
 
 Welcome to **Pl2w's Mod Manager** for Gorilla Tag! Simplify your mod installation and management with just a few clicks.
 
