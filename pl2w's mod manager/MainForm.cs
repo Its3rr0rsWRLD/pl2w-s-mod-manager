@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Runtime.Remoting.Lifetime;
@@ -83,17 +84,38 @@ namespace pl2w_s_mod_manager
                 foreach (ListViewItem item in listView1.CheckedItems)
                 {
                     GorillaMod mod = (GorillaMod)item.Tag;
-                    string cleansedFileName = CleanFileName(mod.modName) + ".dll";
-                    if (File.Exists(Path.Combine(gorillaTagPath, cleansedFileName)))
-                    {
-                        button2.Enabled = true;
-                        return;
-                    }
-                    byte[] file = client.DownloadData(mod.modLink);
-                    File.WriteAllBytes(Path.Combine(gorillaTagPath, "BepInEx", "Plugins", cleansedFileName), file);
+                    if (!mod.isZipped) InstallDll(mod, client);
+                    else InstallZip(mod, client);
                 }
             }
             button2.Enabled = true;
+        }
+
+        private void InstallZip(GorillaMod mod, WebClient client)
+        {
+            if (mod.modName == "BepInEx")
+            {
+                if (!File.Exists(Path.Combine(gorillaTagPath, "winhttp.dll")))
+                {
+                    client.DownloadFile(mod.modLink, "BepInEx.zip");
+
+                    ZipFile.ExtractToDirectory("BepInEx.zip", gorillaTagPath);
+                    File.Delete("BepInEx.zip");
+                }
+                return;
+            }
+        }
+
+        private void InstallDll(GorillaMod mod, WebClient client)
+        {
+            string cleansedFileName = CleanFileName(mod.modName) + ".dll";
+            if (File.Exists(Path.Combine(gorillaTagPath, cleansedFileName)))
+            {
+                button2.Enabled = true;
+                return;
+            }
+            byte[] file = client.DownloadData(mod.modLink);
+            File.WriteAllBytes(Path.Combine(gorillaTagPath, "BepInEx", "Plugins", cleansedFileName), file);
         }
 
         private string CleanFileName(string modName)
@@ -111,6 +133,7 @@ namespace pl2w_s_mod_manager
 
         public string modName { get; set; }
         public string modAuthor { get; set; }
+        public bool isZipped { get; set; }  
     }
 
     [System.Serializable]
