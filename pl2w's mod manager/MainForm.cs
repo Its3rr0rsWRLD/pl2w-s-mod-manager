@@ -1,18 +1,12 @@
-﻿using System;
+﻿using SimpleJSON;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
-using System.Runtime.Remoting.Lifetime;
-using System.Text;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace pl2w_s_mod_manager
@@ -41,8 +35,20 @@ namespace pl2w_s_mod_manager
             // this breaks the form randomly
             string modsJson = client.DownloadString("https://raw.githubusercontent.com/pl2w/pl2w-s-mod-manager/master/mods.json");
 
-            GorillaMods gorillaMods = JsonSerializer.Deserialize<GorillaMods>(modsJson);
-            GorillaMod[] mods = gorillaMods.mods;
+            var allMods = JSON.Parse(modsJson).AsArray;
+            List<GorillaMod> mods = new List<GorillaMod>();
+            for (int i = 0; i < allMods.Count; i++)
+            {
+                JSONNode current = allMods[i];
+                GorillaMod mod = new GorillaMod()
+                {
+                    modName = current["modName"],
+                    modAuthor = current["modAuthor"],
+                    modLink = current["modLink"],
+                    isZipped = current["isZipped"]
+                };
+                mods.Add(mod);
+            }
             foreach (GorillaMod mod in mods)
             {
                 ListViewItem item = new ListViewItem(mod.modName);
@@ -65,7 +71,7 @@ namespace pl2w_s_mod_manager
                     string path = fileDialog.FileName;
                     if (Path.GetFileName(path).Equals("Gorilla Tag.exe"))
                     {
-                        gorillaTagPath = path;
+                        gorillaTagPath = Path.GetDirectoryName(path);
                         textBox1.Text = gorillaTagPath;
                     }
                     else
@@ -98,12 +104,16 @@ namespace pl2w_s_mod_manager
                 if (!File.Exists(Path.Combine(gorillaTagPath, "winhttp.dll")))
                 {
                     client.DownloadFile(mod.modLink, "BepInEx.zip");
-
+                    MessageBox.Show(gorillaTagPath);
                     ZipFile.ExtractToDirectory("BepInEx.zip", gorillaTagPath);
                     File.Delete("BepInEx.zip");
                 }
                 return;
             }
+
+            client.DownloadFile(mod.modLink, mod.modName + ".zip");
+            ZipFile.ExtractToDirectory(mod.modName + ".zip", Path.Combine(gorillaTagPath, "BepInEx", "Plugins"));
+            File.Delete(mod.modName + ".zip");
         }
 
         private void InstallDll(GorillaMod mod, WebClient client)
@@ -134,11 +144,5 @@ namespace pl2w_s_mod_manager
         public string modName { get; set; }
         public string modAuthor { get; set; }
         public bool isZipped { get; set; }  
-    }
-
-    [System.Serializable]
-    public class GorillaMods
-    {
-        public GorillaMod[] mods { get; set; }
     }
 }
