@@ -9,6 +9,11 @@
       "modName": "Gorilla Server Stats",
       "modAuthor": "3rr0r The Nerd",
       "modLink": "https://github.com/ThatError404/GorillaStats/releases/download/1.0.4/GorillaServerStats.dll"
+    },
+    {
+      "modName": "GoPlayGtag",
+      "modAuthor": "Polyglot",
+      "modLink": "https://github.com/d3v3l0p3r-d3v/GoPlayGtag/releases/download/v1.0.1/GoPlayGtag.dll"
     }
   ]
 }
