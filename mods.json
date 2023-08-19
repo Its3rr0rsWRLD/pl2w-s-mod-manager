@@ -1,14 +1,22 @@
 {
   "mods": [
     {
+      "modName": "BepInEx",
+      "modAuthor": "BepInEx",
+      "modLink": "https://github.com/BepInEx/BepInEx/releases/download/v5.4.21/BepInEx_x64_5.4.21.0.zip",
+      "isZipped": true
+    },
+    {
       "modName": "Camera Board",
       "modAuthor": "pl2w",
-      "modLink": "https://github.com/pl2w/CameraBoard/releases/download/v1.0.2/CameraBoard.dll"
+      "modLink": "https://github.com/pl2w/CameraBoard/releases/download/v1.0.2/CameraBoard.dll",
+      "isZipped": false
     },
     {
       "modName": "Gorilla Server Stats",
       "modAuthor": "3rr0r The Nerd",
-      "modLink": "https://github.com/ThatError404/GorillaStats/releases/download/1.0.4/GorillaServerStats.dll"
+      "modLink": "https://github.com/ThatError404/GorillaStats/releases/download/1.0.4/GorillaServerStats.dll",
+      "isZipped": false
     }
   ]
 }
