@@ -1,5 +1,4 @@
-﻿using MonkeModManager.Internals.SimpleJSON;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,7 +37,7 @@ namespace pl2w_s_mod_manager
         void LoadMods()
         {
             WebClient client = new WebClient();
-            // this breaks the form
+            // this breaks the form randomly
             string modsJson = client.DownloadString("https://raw.githubusercontent.com/pl2w/pl2w-s-mod-manager/master/mods.json");
 
             GorillaMods gorillaMods = JsonSerializer.Deserialize<GorillaMods>(modsJson);
