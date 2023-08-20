@@ -3,10 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Lifetime;
+using System.Security.Policy;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace pl2w_s_mod_manager
@@ -24,6 +28,7 @@ namespace pl2w_s_mod_manager
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             textBox1.Text = gorillaTagPath;
             listView1.CheckBoxes = true;
             LoadMods();
@@ -40,6 +45,7 @@ namespace pl2w_s_mod_manager
             for (int i = 0; i < allMods.Count; i++)
             {
                 JSONNode current = allMods[i];
+ 
                 GorillaMod mod = new GorillaMod()
                 {
                     modName = current["modName"],
@@ -48,6 +54,7 @@ namespace pl2w_s_mod_manager
                     isZipped = current["isZipped"]
                 };
                 mods.Add(mod);
+                UpdateReleaseInfo(mod);
             }
             foreach (GorillaMod mod in mods)
             {
@@ -110,7 +117,11 @@ namespace pl2w_s_mod_manager
                 }
                 return;
             }
-
+            if (File.Exists(Path.Combine(gorillaTagPath, "BepInEx", "Plugins", mod.modName + ".zip")))
+            {
+                button2.Enabled = true;
+                return;
+            }
             client.DownloadFile(mod.modLink, mod.modName + ".zip");
             ZipFile.ExtractToDirectory(mod.modName + ".zip", Path.Combine(gorillaTagPath, "BepInEx", "Plugins"));
             File.Delete(mod.modName + ".zip");
@@ -133,6 +144,36 @@ namespace pl2w_s_mod_manager
             return new string(modName.ToCharArray()
                 .Where(c => !Char.IsWhiteSpace(c))
                 .ToArray());
+        }
+
+        private void UpdateReleaseInfo(GorillaMod mod)
+        {
+            Thread.Sleep(100); //So we don't get rate limited by github
+            string link = $"https://api.github.com/repos/{mod.modAuthor}/{mod.modName}/releases/latest";
+            string downloadedSite = string.Empty;
+            downloadedSite = GetSite(link);
+            var site = JSON.Parse(downloadedSite);
+
+            var assetsNode = site["assets"];
+            var downloadReleaseNode = assetsNode[0];
+            mod.modLink = downloadReleaseNode["browser_download_url"];
+        }
+
+        string GetSite(string url)
+        {
+            HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(url);
+            Request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            Request.Proxy = null;
+            Request.Method = "GET";
+            Request.UserAgent = "pl2w-mod-manager";
+            MessageBox.Show(url);
+            using (WebResponse Response = Request.GetResponse())
+            {
+                using (StreamReader Reader = new StreamReader(Response.GetResponseStream()))
+                {
+                    return Reader.ReadToEnd();
+                }
+            }
         }
     }
 
