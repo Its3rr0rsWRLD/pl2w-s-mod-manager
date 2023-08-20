@@ -27,6 +27,38 @@ Welcome to **Pl2w's Mod Manager** for Gorilla Tag! Simplify your mod installatio
 3. Click on the **Install** button next to the mod you want to install.
 4. The mod will be automatically installed and ready to use in Gorilla Tag.
 
+## Upload Your Mod 🚀
+Interested in getting your mod featured in our manager? Follow these steps:
+
+1. **Prepare Your Mod:**
+   Ensure your mod is hosted on GitHub and has a direct download link available for the `.dll` file or a `.zip` package.
+
+2. **Add Your Mod to `mods.json`:**
+   Create a new entry in the format:
+   ```json
+   {
+      "modName": "YourModName",
+      "modAuthor": "YourName",
+      "modLink": "DirectDownloadLink",
+      "isZipped": true_or_false
+   }
+   ```
+
+3. **Submit a Pull Request:**
+   Create a pull request to the `mods.json` file in our repository with your mod details added.
+
+4. **Await Approval:**
+   Once approved, your mod will be available for all users through **Pl2w's Mod Manager**.
+
+## Report Suspicious Mods 🚫
+Found a mod that seems malicious or infected? Protect the community:
+
+1. **Document Evidence:** Take screenshots, logs, or any other evidence of the suspicious behavior.
+2. **Contact Us:** Reach out to us through [our Discord](https://discord.gg/NmaVT4shJQ) with the evidence.
+3. **Avoid Sharing:** Do not distribute or promote the suspicious mod until it's reviewed.
+
+Your safety is our top priority. Together, we can ensure a secure modding environment!
+
 ## Contribute 💡
 Love our mod manager? You can contribute by:
 - Reporting bugs.
