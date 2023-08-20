@@ -65,4 +65,10 @@
       "modLink": "https://github.com/Yizzii/YizziCamModV2/releases/download/beta1.0.7/YizziCamModV2.dll",
       "isZipped": false
     },
+    {
+      "modName": "Utilla/Computer Interface (FIXED) ",
+      "modAuthor": "Dev9998",
+      "modLink": "https://github.com/ThatError404/UTILLA-CI-FIX/releases/download/ee/UTILLA.FIX.zip",
+      "isZipped": true
+    },
   ]
